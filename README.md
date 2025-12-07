@@ -20,7 +20,7 @@ Additional features may be added in the future to enhance the self-hosting exper
 
 ## Usage
 
-You can use this project by cloning the repository and running it locally or deploying it to a web server. To simplify production deployment, a Dockerfile is included and has been published to Docker Hub as `madmaxmckinney/drawdb-lite` for easy use. Simply run the docker image and map the ports as needed.
+You can use this project by cloning the repository and running it locally or deploying it to a web server. To simplify production deployment, a Dockerfile is included and has been published to [Docker Hub](https://hub.docker.com/r/madmaxmckinney/drawdb-lite) as `madmaxmckinney/drawdb-lite` for easy use. Simply run the docker image and map the ports as needed.
 
 ## Development
 
