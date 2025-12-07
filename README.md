@@ -1,49 +1,32 @@
-<div align="center">
-  <sup>Special thanks to:</sup>
-  <br>
-  <a href="https://www.warp.dev/drawdb/" target="_blank">
-    <img alt="Warp sponsorship" width="280" src="https://github.com/user-attachments/assets/c7f141e7-9751-407d-bb0e-d6f2c487b34f">
-    <br>
-    <b>Next-gen AI-powered intelligent terminal for all platforms</b>
-  </a>
-</div>
-
-<br/>
-<br/>
-
-<div align="center">
-    <img width="64" alt="drawdb logo" src="./src/assets/icon-dark.png">
-    <h1>drawDB</h1>
-</div>
-
-<h3 align="center">Free, simple, and intuitive database schema editor and SQL generator.</h3>
-
-<div align="center" style="margin-bottom:12px;">
-    <a href="https://drawdb.app/" style="display: flex; align-items: center;">
-        <img src="https://img.shields.io/badge/Start%20building-grey" alt="drawDB"/>
-    </a>
-    <a href="https://discord.gg/BrjZgNrmR6" style="display: flex; align-items: center;">
-        <img src="https://img.shields.io/discord/1196658537208758412.svg?label=Join%20the%20Discord&logo=discord" alt="Discord"/>
-    </a>
-    <a href="https://x.com/drawDB_" style="display: flex; align-items: center;">
-        <img src="https://img.shields.io/badge/Follow%20us%20on%20X-blue?logo=X" alt="Follow us on X"/>
-    </a>
-    <a href="https://getmanta.ai/drawdb">
-        <img src="https://getmanta.ai/api/badges?text=Manta%20Graph&link=drawdb" alt="DrawDB graph on Manta">
-    </a> 
-</div>
+# drawdb-lite
 
 <h3 align="center"><img width="700" style="border-radius:5px;" alt="demo" src="drawdb.png"></h3>
 
-DrawDB is a robust and user-friendly database entity relationship (DBER) editor right in your browser. Build diagrams with a few clicks, export sql scripts, customize your editor, and more without creating an account. See the full set of features [here](https://drawdb.app/).
+This is a fork of [DrawDB](https://github.com/drawdb-io/drawdb), a web-based database entity relationship (DBER) editor. This fork trims down unnecessary features for a lighter experience meant for self-hosting.
 
-## Getting Started
+## Whats Changed
+
+- Editor is now the root route (`/`)
+- Removed sharing functionality, as self-hosting implies no need for it (normal exporting/saving/importing still works)
+- Removed other routes such as landing page, and templates (templates still can be used in the editor)
+
+## Intention
+
+This project is intended for users who want to self-host a lightweight/focused version of DrawDB without the extra features that are not necessary for personal use or self-hosting (like the marketing landing page). It allows users to create and manage database entity relationship diagrams locally or on their own servers.
+
+The majority of the changes/removals still keep the source code intact for easy merging of future updates from the main DrawDB repository. 
+
+Additional features may be added in the future to enhance the self-hosting experience, or just general editor improvements, and where possible these features will be contributed back to the main DrawDB project.
+
+## Usage
+
+You can use this project by cloning the repository and running it locally or deploying it to a web server. To simplify production deployment, a Dockerfile is included and has been published to Docker Hub as `madmaxmckinney/drawdb-lite` for easy use. Simply run the docker image and map the ports as needed.
+
+## Development
 
 ### Local Development
 
 ```bash
-git clone https://github.com/drawdb-io/drawdb
-cd drawdb
 npm install
 npm run dev
 ```
@@ -51,8 +34,6 @@ npm run dev
 ### Build
 
 ```bash
-git clone https://github.com/drawdb-io/drawdb
-cd drawdb
 npm install
 npm run build
 ```
@@ -63,5 +44,3 @@ npm run build
 docker build -t drawdb .
 docker run -p 3000:80 drawdb
 ```
-
-If you want to enable sharing, set up the [server](https://github.com/drawdb-io/drawdb-server) and environment variables according to `.env.sample`. This is optional unless you need to share files..
