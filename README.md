@@ -2,7 +2,7 @@
 
 <h3 align="center"><img width="700" style="border-radius:5px;" alt="demo" src="drawdb.png"></h3>
 
-This is a fork of [DrawDB](https://github.com/drawdb-io/drawdb), a web-based database entity relationship (DBER) editor. This fork trims down unnecessary features for a lighter experience meant for self-hosting.
+This fork of drawdb trims down non-editor features for an experience ideal for self-hosting. [DrawDB](https://github.com/drawdb-io/drawdb) is a web-based database entity relationship (DBER) editor.
 
 ## Whats Changed
 
