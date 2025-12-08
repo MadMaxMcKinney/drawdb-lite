@@ -114,37 +114,46 @@ export default function Modal({
           setDatabase(diagramDatabase);
           setDiagramId(diagram.id);
           setTitle(diagram.name);
-          setTables(diagram.tables);
-          setRelationships(diagram.references);
-          setAreas(diagram.areas);
-          setNotes(diagram.notes);
+          setTables(diagram.tables ?? []);
+          setRelationships(diagram.references ?? []);
+          setAreas(diagram.areas ?? []);
+          setNotes(diagram.notes ?? []);
           setTasks(diagram.todos ?? []);
           setGistId(diagram.gistId ?? "");
           setTransform({
-            pan: diagram.pan,
-            zoom: diagram.zoom,
+            pan: diagram.pan ?? { x: 0, y: 0 },
+            zoom: diagram.zoom ?? 1,
           });
           setUndoStack([]);
           setRedoStack([]);
           if (databases[diagramDatabase].hasTypes) {
-            setTypes(
-              diagram.types.map((t) =>
-                t.id
-                  ? t
-                  : {
-                      ...t,
-                      id: nanoid(),
-                      fields: t.fields.map((f) =>
-                        f.id ? f : { ...f, id: nanoid() },
-                      ),
-                    },
-              ),
-            );
+            if (diagram.types) {
+              setTypes(
+                diagram.types.map((t) =>
+                  t.id
+                    ? t
+                    : {
+                        ...t,
+                        id: nanoid(),
+                        fields: t.fields.map((f) =>
+                          f.id ? f : { ...f, id: nanoid() },
+                        ),
+                      },
+                ),
+              );
+            } else {
+              setTypes([]);
+            }
           }
-          setEnums(
-            diagram.enums.map((e) => (!e.id ? { ...e, id: nanoid() } : e)) ??
-              [],
-          );
+          if (databases[diagramDatabase].hasEnums) {
+            if (diagram.enums) {
+              setEnums(
+                diagram.enums.map((e) => (!e.id ? { ...e, id: nanoid() } : e)),
+              );
+            } else {
+              setEnums([]);
+            }
+          }
           window.name = `d ${diagram.id}`;
           setSaveState(State.SAVING);
         } else {
