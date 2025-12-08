@@ -759,11 +759,8 @@ export default function ControlPanel({
       .get(id)
       .then((diagram) => {
         if (diagram) {
-          if (diagram.database) {
-            setDatabase(diagram.database);
-          } else {
-            setDatabase(DB.GENERIC);
-          }
+          const diagramDatabase = diagram.database || DB.GENERIC;
+          setDatabase(diagramDatabase);
           setDiagramId(diagram.id);
           setTitle(diagram.name);
           setTables(diagram.tables);
@@ -778,7 +775,7 @@ export default function ControlPanel({
           });
           setUndoStack([]);
           setRedoStack([]);
-          if (databases[database].hasTypes) {
+          if (databases[diagramDatabase].hasTypes) {
             setTypes(
               diagram.types.map((t) =>
                 t.id
