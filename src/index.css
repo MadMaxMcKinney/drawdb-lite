@@ -47,7 +47,7 @@
   border: none !important;
 }
 
-.semi-button.semi-button-light {
+/* .semi-button.semi-button-light {
   background-color: rgba(var(--semi-grey-1), 1);
 }
 
@@ -65,7 +65,7 @@
     .semi-button-borderless
   ):hover {
   background-color: rgba(var(--semi-blue-6), 1);
-}
+} */
 
 .semi-steps-item-content,
 .semi-steps-item-title {
