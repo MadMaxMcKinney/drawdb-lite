@@ -82,7 +82,7 @@ export default function TableInfo({ data }) {
   return (
     <div>
       <div className="flex items-center mb-2.5">
-        <div className="text-md font-semibold break-keep">{t("name")}:</div>
+        {/* <div className="text-md font-semibold break-keep">{t("name")}:</div> */}
         <Input
           value={data.name}
           validateStatus={data.name.trim() === "" ? "error" : "default"}

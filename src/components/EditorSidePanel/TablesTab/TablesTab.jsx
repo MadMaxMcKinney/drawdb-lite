@@ -109,7 +109,8 @@ function TableListItem({ table }) {
   return (
     <div id={`scroll_table_${table.id}`}>
       <Collapse.Panel
-        className="relative"
+        className="relative my-2 rounded-lg overflow-clip"
+        style={{ border: "1px solid var(--semi-color-border)" }}
         header={
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-2 flex-1">
