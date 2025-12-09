@@ -1,14 +1,11 @@
-import {
-  IconCaretdown,
-  IconCheckboxTick,
-  IconRowsStroked,
-} from "@douyinfe/semi-icons";
+import { IconCheckboxTick } from "@douyinfe/semi-icons";
 import { Dropdown } from "@douyinfe/semi-ui";
 import { useFullscreen, useLayout } from "../../hooks";
 import { enterFullscreen, exitFullscreen } from "../../utils/fullscreen";
 import { useTranslation } from "react-i18next";
 import { isRtl } from "../../i18n/utils/rtl";
 import i18n from "../../i18n/i18n";
+import { CaretDownIcon, LayoutIcon } from "@phosphor-icons/react";
 
 export default function LayoutDropdown() {
   const fullscreen = useFullscreen();
@@ -69,9 +66,9 @@ export default function LayoutDropdown() {
       trigger="click"
     >
       <div className="py-1 px-2 hover-2 rounded-sm flex items-center justify-center">
-        <IconRowsStroked size="extra-large" />
+        <LayoutIcon className="text-lg" />
         <div>
-          <IconCaretdown />
+          <CaretDownIcon />
         </div>
       </div>
     </Dropdown>

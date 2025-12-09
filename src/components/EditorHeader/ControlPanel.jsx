@@ -1,13 +1,7 @@
 import { useContext, useState } from "react";
 import {
-  IconCaretdown,
   IconChevronRight,
   IconChevronLeft,
-  IconChevronUp,
-  IconChevronDown,
-  IconSaveStroked,
-  IconUndo,
-  IconRedo,
   IconEdit,
 } from "@douyinfe/semi-icons";
 import { Link, useNavigate } from "react-router-dom";
@@ -65,7 +59,6 @@ import {
 } from "../../hooks";
 import { enterFullscreen, exitFullscreen } from "../../utils/fullscreen";
 import { dataURItoBlob } from "../../utils/utils";
-import { IconAddArea, IconAddNote, IconAddTable } from "../../icons";
 import LayoutDropdown from "./LayoutDropdown";
 import Sidesheet from "./SideSheet/Sidesheet";
 import Modal from "./Modal/Modal";
@@ -84,6 +77,22 @@ import { getTableHeight } from "../../utils/utils";
 import { deleteFromCache, STORAGE_KEY } from "../../utils/cache";
 import { useLiveQuery } from "dexie-react-hooks";
 import { DateTime } from "luxon";
+import {
+  ArrowUUpLeftIcon,
+  ArrowUUpRightIcon,
+  CaretDownIcon,
+  CaretUpIcon,
+  FloppyDiskIcon,
+  GitForkIcon,
+  ListChecksIcon,
+  MagnifyingGlassMinusIcon,
+  MagnifyingGlassPlusIcon,
+  MoonIcon,
+  SunIcon,
+} from "@phosphor-icons/react";
+import AddTableIcon from "../../icons/AddTableIcon";
+import AddAreaIcon from "../../icons/AddAreaIcon";
+import AddNoteIcon from "../../icons/AddNoteIcon";
 export default function ControlPanel({
   diagramId,
   setDiagramId,
@@ -1706,11 +1715,11 @@ export default function ControlPanel({
             trigger="click"
           >
             <div className="py-1 px-2 hover-2 rounded-sm flex items-center justify-center">
-              <div className="w-[40px]">
+              <div className="w-[38px] text-sm">
                 {Math.floor(transform.zoom * 100)}%
               </div>
               <div>
-                <IconCaretdown />
+                <CaretDownIcon />
               </div>
             </div>
           </Dropdown>
@@ -1721,7 +1730,7 @@ export default function ControlPanel({
                 setTransform((prev) => ({ ...prev, zoom: prev.zoom * 1.2 }))
               }
             >
-              <i className="fa-solid fa-magnifying-glass-plus" />
+              <MagnifyingGlassPlusIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("zoom_out")} position="bottom">
@@ -1731,86 +1740,86 @@ export default function ControlPanel({
                 setTransform((prev) => ({ ...prev, zoom: prev.zoom / 1.2 }))
               }
             >
-              <i className="fa-solid fa-magnifying-glass-minus" />
+              <MagnifyingGlassMinusIcon />
             </button>
           </Tooltip>
           <Divider layout="vertical" margin="8px" />
           <Tooltip content={t("undo")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50"
+              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50 text-lg"
               disabled={undoStack.length === 0 || layout.readOnly}
               onClick={undo}
             >
-              <IconUndo size="large" />
+              <ArrowUUpLeftIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("redo")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50"
+              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50 text-lg"
               disabled={redoStack.length === 0 || layout.readOnly}
               onClick={redo}
             >
-              <IconRedo size="large" />
+              <ArrowUUpRightIcon />
             </button>
           </Tooltip>
           <Divider layout="vertical" margin="8px" />
           <Tooltip content={t("add_table")} position="bottom">
             <button
-              className="flex items-center py-1 px-2 hover-2 rounded-sm disabled:opacity-50"
+              className="flex items-center py-1 px-2 hover-2 rounded-sm disabled:opacity-50 text-lg"
               onClick={() => addTable()}
               disabled={layout.readOnly}
             >
-              <IconAddTable />
+              <AddTableIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("add_area")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50"
+              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50 text-lg"
               onClick={() => addArea()}
               disabled={layout.readOnly}
             >
-              <IconAddArea />
+              <AddAreaIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("add_note")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50"
+              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50 text-lg"
               onClick={() => addNote()}
               disabled={layout.readOnly}
             >
-              <IconAddNote />
+              <AddNoteIcon />
             </button>
           </Tooltip>
           <Divider layout="vertical" margin="8px" />
           <Tooltip content={t("save")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50"
+              className="py-1 px-2 hover-2 rounded-sm flex items-center disabled:opacity-50 text-lg"
               onClick={save}
               disabled={layout.readOnly}
             >
-              <IconSaveStroked size="extra-large" />
+              <FloppyDiskIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("versions")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm text-xl -mt-0.5"
+              className="py-1 px-2 hover-2 rounded-sm -mt-0.5 text-lg"
               onClick={() => setSidesheet(SIDESHEET.VERSIONS)}
             >
-              <i className="fa-solid fa-code-branch" />{" "}
+              <GitForkIcon />
             </button>
           </Tooltip>
           <Tooltip content={t("to_do")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm text-xl -mt-0.5"
+              className="py-1 px-2 hover-2 rounded-sm -mt-0.5 text-lg"
               onClick={() => setSidesheet(SIDESHEET.TODO)}
             >
-              <i className="fa-regular fa-calendar-check" />
+              <ListChecksIcon />
             </button>
           </Tooltip>
           <Divider layout="vertical" margin="8px" />
           <Tooltip content={t("theme")} position="bottom">
             <button
-              className="py-1 px-2 hover-2 rounded-sm text-xl -mt-0.5"
+              className="py-1 px-2 hover-2 rounded-sm -mt-0.5 text-lg"
               onClick={() => {
                 const body = document.body;
                 if (body.hasAttribute("theme-mode")) {
@@ -1822,15 +1831,15 @@ export default function ControlPanel({
                 }
               }}
             >
-              <i className="fa-solid fa-circle-half-stroke" />
+              {settings.mode === "light" ? <MoonIcon /> : <SunIcon />}
             </button>
           </Tooltip>
         </div>
         <button
           onClick={() => invertLayout("header")}
-          className="flex items-center"
+          className="flex items-center text-lg"
         >
-          {layout.header ? <IconChevronUp /> : <IconChevronDown />}
+          {layout.header ? <CaretUpIcon /> : <CaretDownIcon />}
         </button>
       </div>
     );
