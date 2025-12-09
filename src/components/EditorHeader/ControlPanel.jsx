@@ -87,6 +87,8 @@ import {
   MagnifyingGlassMinusIcon,
   MagnifyingGlassPlusIcon,
   MoonIcon,
+  PencilIcon,
+  PencilSimpleIcon,
   SunIcon,
 } from "@phosphor-icons/react";
 import AddTableIcon from "../../icons/AddTableIcon";
@@ -1886,7 +1888,7 @@ export default function ControlPanel({
                 />
               )}
               <div
-                className="text-xl flex items-center gap-1 me-1"
+                className="text-xl flex items-center gap-1 hover:cursor-pointer"
                 onPointerEnter={(e) => e.isPrimary && setShowEditName(true)}
                 onPointerLeave={(e) => e.isPrimary && setShowEditName(false)}
                 onPointerDown={(e) => {
@@ -1908,7 +1910,7 @@ export default function ControlPanel({
                 )}
               </div>
               {(showEditName || modal === MODAL.RENAME) && !layout.readOnly && (
-                <IconEdit />
+                <PencilSimpleIcon />
               )}
             </div>
             <div className="flex items-center">
