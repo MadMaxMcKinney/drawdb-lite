@@ -1,6 +1,12 @@
 import { useMemo } from "react";
-import { Tabs, TabPane, Divider, Tooltip, Button } from "@douyinfe/semi-ui";
-import { IconCode } from "@douyinfe/semi-icons";
+import {
+  Tabs,
+  TabPane,
+  Divider,
+  Tooltip,
+  Button,
+  Dropdown,
+} from "@douyinfe/semi-ui";
 import { Tab } from "../../data/constants";
 import {
   useLayout,
@@ -23,6 +29,7 @@ import EnumsTab from "./EnumsTab/EnumsTab";
 import { isRtl } from "../../i18n/utils/rtl";
 import i18n from "../../i18n/i18n";
 import DBMLEditor from "./DBMLEditor";
+import { CaretLeftIcon, CaretRightIcon, CodeIcon } from "@phosphor-icons/react";
 
 export default function SidePanel({ width, resize, setResize }) {
   const { layout, setLayout } = useLayout();
@@ -90,6 +97,45 @@ export default function SidePanel({ width, resize, setResize }) {
     notesCount,
   ]);
 
+  const renderArrow = (items, pos, handleArrowClick) => {
+    const style = {
+      width: "24px",
+      height: "24px",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      cursor: "pointer",
+    };
+    return (
+      <Dropdown
+        render={
+          <Dropdown.Menu>
+            {items.map((item) => {
+              return (
+                <Dropdown.Item
+                  key={item.itemKey}
+                  onClick={() => setSelectedElement(item.itemKey)}
+                >
+                  {item.itemKey}
+                </Dropdown.Item>
+              );
+            })}
+          </Dropdown.Menu>
+        }
+      >
+        {pos === "start" ? (
+          <div onClick={handleArrowClick} style={style}>
+            <CaretLeftIcon />
+          </div>
+        ) : (
+          <div onClick={handleArrowClick} style={style}>
+            <CaretRightIcon />
+          </div>
+        )}
+      </Dropdown>
+    );
+  };
+
   return (
     <div className="flex h-full">
       <div
@@ -105,6 +151,7 @@ export default function SidePanel({ width, resize, setResize }) {
               activeKey={selectedElement.currentTab}
               lazyRender
               keepDOM={false}
+              renderArrow={renderArrow}
               onChange={(key) =>
                 setSelectedElement((prev) => ({ ...prev, currentTab: key }))
               }
@@ -116,7 +163,7 @@ export default function SidePanel({ width, resize, setResize }) {
                   <Tooltip content={t("dbml_view")} position="bottom">
                     <Button
                       onClick={toggleDBMLEditor}
-                      icon={<IconCode />}
+                      icon={<CodeIcon size={18} />}
                       theme="borderless"
                     />
                   </Tooltip>
