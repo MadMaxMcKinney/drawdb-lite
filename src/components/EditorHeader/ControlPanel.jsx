@@ -5,7 +5,6 @@ import {
   IconEdit,
 } from "@douyinfe/semi-icons";
 import { Link, useNavigate } from "react-router-dom";
-import icon from "../../assets/icon_dark_64.png";
 import {
   Divider,
   Dropdown,
@@ -93,6 +92,7 @@ import {
 import AddTableIcon from "../../icons/AddTableIcon";
 import AddAreaIcon from "../../icons/AddAreaIcon";
 import AddNoteIcon from "../../icons/AddNoteIcon";
+import DBDrawLiteLogoIcon from "../../icons/DBDrawLiteLogoIcon";
 export default function ControlPanel({
   diagramId,
   setDiagramId,
@@ -1867,18 +1867,10 @@ export default function ControlPanel({
   function header() {
     return (
       <nav
-        className="flex justify-between pt-1 items-center whitespace-nowrap"
+        className="flex justify-between w-full pb-1 pt-2 items-center whitespace-nowrap"
         style={isRtl(i18n.language) ? { direction: "rtl" } : {}}
       >
-        <div className="flex justify-start items-center">
-          <Link to="/">
-            <img
-              width={54}
-              src={icon}
-              alt="logo"
-              className="ms-7 min-w-[54px]"
-            />
-          </Link>
+        <div className="flex justify-between w-full items-center">
           <div className="ms-1 mt-1">
             <div className="flex items-center ms-3 gap-2">
               {databases[database].image && (
@@ -2062,6 +2054,9 @@ export default function ControlPanel({
               )}
             </div>
           </div>
+          <Link to="/" className="ml-4">
+            <DBDrawLiteLogoIcon />
+          </Link>
         </div>
       </nav>
     );
