@@ -8,7 +8,6 @@ import {
   Select,
 } from "@douyinfe/semi-ui";
 import ColorPicker from "../ColorPicker";
-import { IconDeleteStroked } from "@douyinfe/semi-icons";
 import {
   useDiagram,
   useLayout,
@@ -21,6 +20,7 @@ import IndexDetails from "./IndexDetails";
 import { useTranslation } from "react-i18next";
 import { SortableList } from "../../SortableList/SortableList";
 import { nanoid } from "nanoid";
+import { TrashIcon, CaretUpIcon, CaretDownIcon } from "@phosphor-icons/react";
 
 export default function TableInfo({ data }) {
   const { tables, database } = useDiagram();
@@ -203,49 +203,7 @@ export default function TableInfo({ data }) {
         </Card>
       )}
 
-      <Card
-        bodyStyle={{ padding: "4px" }}
-        style={{ marginTop: "12px", marginBottom: "12px" }}
-        headerLine={false}
-      >
-        <Collapse keepDOM={false} lazyRender>
-          <Collapse.Panel header={t("comment")} itemKey="1">
-            <TextArea
-              field="comment"
-              value={data.comment}
-              readonly={layout.readOnly}
-              autosize
-              placeholder={t("comment")}
-              rows={1}
-              onChange={(value) =>
-                updateTable(data.id, { comment: value }, false)
-              }
-              onFocus={(e) => setEditField({ comment: e.target.value })}
-              onBlur={(e) => {
-                if (e.target.value === editField.comment) return;
-                setUndoStack((prev) => [
-                  ...prev,
-                  {
-                    action: Action.EDIT,
-                    element: ObjectType.TABLE,
-                    component: "self",
-                    tid: data.id,
-                    undo: editField,
-                    redo: { comment: e.target.value },
-                    message: t("edit_table", {
-                      tableName: e.target.value,
-                      extra: "[comment]",
-                    }),
-                  },
-                ]);
-                setRedoStack([]);
-              }}
-            />
-          </Collapse.Panel>
-        </Collapse>
-      </Card>
-
-      <div className="flex justify-between items-center gap-1 mb-2">
+      <div className="flex justify-between items-center gap-1 my-4">
         <ColorPicker
           usePopover={true}
           readOnly={layout.readOnly}
@@ -332,11 +290,58 @@ export default function TableInfo({ data }) {
           <Button
             type="danger"
             disabled={layout.readOnly}
-            icon={<IconDeleteStroked />}
+            icon={<TrashIcon />}
             onClick={() => deleteTable(data.id)}
           />
         </div>
       </div>
+
+      <Card
+        bodyStyle={{ padding: "4px" }}
+        style={{ marginTop: "12px", marginBottom: "12px" }}
+        headerLine={false}
+      >
+        <Collapse
+          keepDOM={false}
+          lazyRender
+          collapseIcon={<CaretUpIcon />}
+          expandIcon={<CaretDownIcon />}
+        >
+          <Collapse.Panel header={t("comment")} itemKey="1">
+            <TextArea
+              field="comment"
+              value={data.comment}
+              readonly={layout.readOnly}
+              autosize
+              placeholder={t("comment")}
+              rows={1}
+              onChange={(value) =>
+                updateTable(data.id, { comment: value }, false)
+              }
+              onFocus={(e) => setEditField({ comment: e.target.value })}
+              onBlur={(e) => {
+                if (e.target.value === editField.comment) return;
+                setUndoStack((prev) => [
+                  ...prev,
+                  {
+                    action: Action.EDIT,
+                    element: ObjectType.TABLE,
+                    component: "self",
+                    tid: data.id,
+                    undo: editField,
+                    redo: { comment: e.target.value },
+                    message: t("edit_table", {
+                      tableName: e.target.value,
+                      extra: "[comment]",
+                    }),
+                  },
+                ]);
+                setRedoStack([]);
+              }}
+            />
+          </Collapse.Panel>
+        </Collapse>
+      </Card>
     </div>
   );
 }

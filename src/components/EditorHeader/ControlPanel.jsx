@@ -1,9 +1,5 @@
 import { useContext, useState } from "react";
-import {
-  IconChevronRight,
-  IconChevronLeft,
-  IconEdit,
-} from "@douyinfe/semi-icons";
+import { IconChevronRight, IconChevronLeft } from "@douyinfe/semi-icons";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Divider,
@@ -87,7 +83,6 @@ import {
   MagnifyingGlassMinusIcon,
   MagnifyingGlassPlusIcon,
   MoonIcon,
-  PencilIcon,
   PencilSimpleIcon,
   SunIcon,
 } from "@phosphor-icons/react";

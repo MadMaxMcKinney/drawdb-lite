@@ -1,6 +1,4 @@
 import { Collapse, Button } from "@douyinfe/semi-ui";
-import { IconEyeOpened, IconEyeClosed } from "@douyinfe/semi-icons";
-import { IconPlus } from "@douyinfe/semi-icons";
 import {
   useSelect,
   useDiagram,
@@ -15,6 +13,13 @@ import { SortableList } from "../../SortableList/SortableList";
 import SearchBar from "./SearchBar";
 import Empty from "../Empty";
 import TableInfo from "./TableInfo";
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  EyeClosedIcon,
+  EyeIcon,
+  PlusIcon,
+} from "@phosphor-icons/react";
 
 export default function TablesTab() {
   const { tables, addTable, setTables } = useDiagram();
@@ -30,7 +35,7 @@ export default function TablesTab() {
         <div>
           <Button
             block
-            icon={<IconPlus />}
+            icon={<PlusIcon />}
             onClick={() => addTable()}
             disabled={layout.readOnly}
           >
@@ -49,6 +54,8 @@ export default function TablesTab() {
           }
           keepDOM={false}
           lazyRender
+          collapseIcon={<CaretUpIcon />}
+          expandIcon={<CaretDownIcon />}
           onChange={(k) =>
             setSelectedElement((prev) => ({
               ...prev,
@@ -116,7 +123,7 @@ function TableListItem({ table }) {
               theme="borderless"
               type="tertiary"
               onClick={toggleTableVisibility}
-              icon={table.hidden ? <IconEyeClosed /> : <IconEyeOpened />}
+              icon={table.hidden ? <EyeClosedIcon /> : <EyeIcon />}
               className="me-2"
             />
             <div

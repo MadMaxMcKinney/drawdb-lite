@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { Action, ObjectType } from "../../../data/constants";
 import { Input, Button, Popover, Select } from "@douyinfe/semi-ui";
-import { IconMore, IconKeyStroked } from "@douyinfe/semi-icons";
 import {
   useEnums,
   useDiagram,
@@ -13,6 +12,11 @@ import { useTranslation } from "react-i18next";
 import { dbToTypes } from "../../../data/datatypes";
 import { DragHandle } from "../../SortableList/DragHandle";
 import FieldDetails from "./FieldDetails";
+import {
+  DotsThreeOutlineIcon,
+  KeyIcon,
+  QuestionMarkIcon,
+} from "@phosphor-icons/react";
 
 export default function TableField({ data, tid, index, inherited }) {
   const { updateField } = useDiagram();
@@ -178,7 +182,7 @@ export default function TableField({ data, tid, index, inherited }) {
             updateField(tid, data.id, { notNull: !data.notNull });
           }}
         >
-          ?
+          <QuestionMarkIcon />
         </Button>
       </div>
 
@@ -187,7 +191,7 @@ export default function TableField({ data, tid, index, inherited }) {
           title={t("primary")}
           theme={data.primary ? "solid" : "light"}
           type={data.primary ? "primary" : "tertiary"}
-          icon={<IconKeyStroked />}
+          icon={<KeyIcon />}
           onClick={() => {
             if (layout.readOnly) return;
 
@@ -224,7 +228,7 @@ export default function TableField({ data, tid, index, inherited }) {
           position="right"
           showArrow
         >
-          <Button type="tertiary" icon={<IconMore />} />
+          <Button type="tertiary" icon={<DotsThreeOutlineIcon />} />
         </Popover>
       </div>
     </div>
