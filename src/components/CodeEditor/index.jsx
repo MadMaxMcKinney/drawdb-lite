@@ -1,10 +1,10 @@
 import { Editor } from "@monaco-editor/react";
 import { useDiagram, useSettings } from "../../hooks";
-import { Button, Toast } from "@douyinfe/semi-ui";
+import { Button, Toast, Tooltip } from "@douyinfe/semi-ui";
 import { useTranslation } from "react-i18next";
-import { IconCopy } from "@douyinfe/semi-icons";
 import { setUpDBML } from "./setUpDBML";
 import "./styles.css";
+import { CopyIcon } from "@phosphor-icons/react";
 
 export default function CodeEditor({
   showCopyButton,
@@ -42,11 +42,13 @@ export default function CodeEditor({
       {showCopyButton && (
         <div className="absolute right-6 bottom-2 z-10 space-y-2">
           <div>{extraControls}</div>
-          <Button
-            icon={<IconCopy />}
-            onClick={copyCode}
-            className="inline-block"
-          />
+          <Tooltip content={t("copy")}>
+            <Button
+              icon={<CopyIcon size={18} />}
+              onClick={copyCode}
+              className="inline-block"
+            />
+          </Tooltip>
         </div>
       )}
     </div>

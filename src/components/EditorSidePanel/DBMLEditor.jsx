@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useDiagram, useEnums, useLayout } from "../../hooks";
 import { toDBML } from "../../utils/exportAs/dbml";
 import { Button, Tooltip } from "@douyinfe/semi-ui";
-import { IconTemplate } from "@douyinfe/semi-icons";
 import { useTranslation } from "react-i18next";
 import CodeEditor from "../CodeEditor";
+import { TabsIcon } from "@phosphor-icons/react";
 
 export default function DBMLEditor() {
   const { tables: currentTables, relationships } = useDiagram();
@@ -35,7 +35,7 @@ export default function DBMLEditor() {
       }}
       extraControls={
         <Tooltip content={t("tab_view")}>
-          <Button icon={<IconTemplate />} onClick={toggleDBMLEditor} />
+          <Button icon={<TabsIcon size={18} />} onClick={toggleDBMLEditor} />
         </Tooltip>
       }
     />
