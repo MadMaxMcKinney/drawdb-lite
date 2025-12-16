@@ -5,6 +5,7 @@ import Empty from "../Empty";
 import SearchBar from "./SearchBar";
 import NoteInfo from "./NoteInfo";
 import { useTranslation } from "react-i18next";
+import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 
 export default function NotesTab() {
   const { notes, addNote } = useNotes();
@@ -41,6 +42,8 @@ export default function NotesTab() {
           activeKey={selectedElement.open ? `${selectedElement.id}` : ""}
           keepDOM={false}
           lazyRender
+          expandIcon={<CaretDownIcon />}
+          collapseIcon={<CaretUpIcon />}
           onChange={(activeKey) => {
             setSelectedElement((prev) => ({
               ...prev,

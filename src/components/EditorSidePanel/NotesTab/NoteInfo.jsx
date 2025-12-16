@@ -60,7 +60,7 @@ export default function NoteInfo({ data, nid }) {
       id={`scroll_note_${data.id}`}
     >
       <div className="flex items-center mb-2">
-        <div className="font-semibold me-2 break-keep">{t("title")}:</div>
+        {/* <div className="font-semibold me-2 break-keep">{t("title")}:</div> */}
         <Input
           value={data.title}
           readonly={layout.readOnly}
@@ -85,6 +85,12 @@ export default function NoteInfo({ data, nid }) {
             ]);
             setRedoStack([]);
           }}
+        />
+        <Button
+          type="danger"
+          disabled={layout.readOnly}
+          icon={<IconDeleteStroked />}
+          onClick={() => deleteNote(nid, true)}
         />
       </div>
       <div className="flex justify-between align-top">

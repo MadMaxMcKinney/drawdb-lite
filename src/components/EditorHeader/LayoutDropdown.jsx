@@ -5,7 +5,7 @@ import { enterFullscreen, exitFullscreen } from "../../utils/fullscreen";
 import { useTranslation } from "react-i18next";
 import { isRtl } from "../../i18n/utils/rtl";
 import i18n from "../../i18n/i18n";
-import { CaretDownIcon, LayoutIcon } from "@phosphor-icons/react";
+import { CaretDownIcon, CheckIcon, LayoutIcon } from "@phosphor-icons/react";
 
 export default function LayoutDropdown() {
   const fullscreen = useFullscreen();
@@ -25,32 +25,26 @@ export default function LayoutDropdown() {
       render={
         <Dropdown.Menu>
           <Dropdown.Item
-            icon={
-              layout.header ? <IconCheckboxTick /> : <div className="px-2" />
-            }
+            icon={layout.header ? <CheckIcon /> : <div className="px-2" />}
             onClick={() => invertLayout("header")}
           >
             {t("header")}
           </Dropdown.Item>
           <Dropdown.Item
-            icon={
-              layout.sidebar ? <IconCheckboxTick /> : <div className="px-2" />
-            }
+            icon={layout.sidebar ? <CheckIcon /> : <div className="px-2" />}
             onClick={() => invertLayout("sidebar")}
           >
             {t("sidebar")}
           </Dropdown.Item>
           <Dropdown.Item
-            icon={
-              layout.issues ? <IconCheckboxTick /> : <div className="px-2" />
-            }
+            icon={layout.issues ? <CheckIcon /> : <div className="px-2" />}
             onClick={() => invertLayout("issues")}
           >
             {t("issues")}
           </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item
-            icon={fullscreen ? <IconCheckboxTick /> : <div className="px-2" />}
+            icon={fullscreen ? <CheckIcon /> : <div className="px-2" />}
             onClick={() => {
               if (fullscreen) {
                 exitFullscreen();

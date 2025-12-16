@@ -4,6 +4,7 @@ import { arrayIsEqual } from "../../utils/utils";
 import { getIssues } from "../../utils/issues";
 import { useEnums, useSettings, useDiagram, useTypes } from "../../hooks";
 import { useTranslation } from "react-i18next";
+import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 
 export default function Issues() {
   const { types } = useTypes();
@@ -32,7 +33,13 @@ export default function Issues() {
   }, [tables, relationships, issues, types, database, enums]);
 
   return (
-    <Collapse lazyRender keepDOM={false} style={{ width: "100%" }}>
+    <Collapse
+      lazyRender
+      keepDOM={false}
+      style={{ width: "100%" }}
+      expandIcon={<CaretDownIcon />}
+      collapseIcon={<CaretUpIcon />}
+    >
       <Collapse.Panel
         header={
           <Badge

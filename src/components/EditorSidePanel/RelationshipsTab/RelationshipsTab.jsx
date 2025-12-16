@@ -7,6 +7,7 @@ import { ObjectType, State } from "../../../data/constants";
 import { useTranslation } from "react-i18next";
 import { SortableList } from "../../SortableList/SortableList";
 import { DragHandle } from "../../SortableList/DragHandle";
+import { CaretDownIcon, CaretUpIcon } from "@phosphor-icons/react";
 
 export default function RelationshipsTab() {
   const { relationships, setRelationships } = useDiagram();
@@ -31,6 +32,8 @@ export default function RelationshipsTab() {
               ? `${selectedElement.id}`
               : ""
           }
+          collapseIcon={<CaretUpIcon />}
+          expandIcon={<CaretDownIcon />}
           keepDOM={false}
           lazyRender
           onChange={(k) => {
